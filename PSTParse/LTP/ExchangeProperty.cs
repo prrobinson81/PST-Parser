@@ -42,6 +42,7 @@ namespace PSTParse.LTP
                                              {0x1040,new ExchangeProperty{ByteCount = 8,Type = 0x1040,MultiValue = true, Variable = false}},
                                              {0x1048,new ExchangeProperty{ByteCount = 8,Type = 0x1048,MultiValue = true, Variable = false}},
                                              {0x1102,new ExchangeProperty{ByteCount = 0,Type = 0x1102,MultiValue = true, Variable = true}},
+                                             {0x67FF,new ExchangeProperty{ByteCount = 0,Type = 0x67FF,MultiValue = true, Variable = true}},
                                              //{0x1102,new ExchangeProperty{ByteCount = 0,Type = 0x1102,MultiValue = true, Variable = true}}
                                          };
 
