@@ -12,6 +12,6 @@ namespace PSTParse.NDB
         public ulong PstOffset;
         public uint CRC32;
         public uint CRCOffset;
-        public BBTENTRY BBTEntry;
+        public IBBTENTRY BBTEntry;
     }
 }
