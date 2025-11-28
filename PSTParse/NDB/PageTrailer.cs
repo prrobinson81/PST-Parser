@@ -14,6 +14,7 @@ namespace PSTParse.NDB
         FreePageMap = 0x85,
         DensityList = 0x86
     }
+
     public class PageTrailer
     {
         public PageType PageType { get; set; }
@@ -23,6 +24,18 @@ namespace PSTParse.NDB
         {
             this.PageType = (PageType) trailer[0];
             this.BID = BitConverter.ToUInt64(trailer, 8);
+        }
+    }
+
+    public class PageTrailer_a
+    {
+        public PageType PageType { get; set; }
+        public UInt32 BID { get; set; }
+
+        public PageTrailer_a(byte[] trailer)
+        {
+            this.PageType = (PageType)trailer[0];
+            this.BID = BitConverter.ToUInt32(trailer, 4);
         }
     }
 

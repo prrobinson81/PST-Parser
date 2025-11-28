@@ -109,9 +109,9 @@ namespace PSTParse.NDB
 
         public static void CryptPermute(byte[] pv, int cb, bool fEncrypt, PSTFile pst)
         {
-            if (pst.Header.EncodingAlgotihm == PSTHeader.BlockEncoding.NONE)
+            if (pst.Header.EncodingAlgorithm == PSTHeader.BlockEncoding.NONE)
                 return;
-            if (pst.Header.EncodingAlgotihm == PSTHeader.BlockEncoding.PERMUTE)
+            if (pst.Header.EncodingAlgorithm == PSTHeader.BlockEncoding.PERMUTE)
             {
                 int idx = (fEncrypt ? 0 : 512);
                 int temp = 0;
