@@ -13,8 +13,8 @@ namespace PSTParse.LTP
         public PropertyContext(ulong nid, PSTFile pst)
         {
             var bytes = BlockBO.GetNodeData(nid, pst);
-            var HN = new HN(bytes);
-            this.BTH = new BTH(HN);
+            var hn = new HN(bytes);
+            this.BTH = new BTH(hn);
             this.Properties = this.BTH.GetExchangeProperties();
         }
 
