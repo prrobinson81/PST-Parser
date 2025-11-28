@@ -27,11 +27,24 @@ namespace PSTParse.LTP
 
             this.RowIndexBTH = new BTH(this.HeapNode,this.TCHeader.RowIndexLocation);
             this.ReverseRowIndex = new Dictionary<uint, uint>();
-            foreach(var prop in this.RowIndexBTH.Properties)
+
+            foreach (var prop in this.RowIndexBTH.Properties)
             {
-                var temp = BitConverter.ToUInt32(prop.Value.Data, 0);
-                this.ReverseRowIndex.Add(temp,BitConverter.ToUInt32(prop.Key, 0));
+                if (prop.Value.Data.Length == 8)
+                {
+                    // Unicode PSTs use 4 bytes for the key, and 4 bytes for the value in the Row Index BTH
+                    var temp = BitConverter.ToUInt32(prop.Value.Data, 0);
+                    this.ReverseRowIndex.Add(temp, BitConverter.ToUInt32(prop.Key, 0));
+                }
+
+                if (prop.Value.Data.Length == 6)
+                {
+                    // ANSI PSTs use 2 bytes for the key, and 4 bytes for the value in the Row Index BTH
+                    var temp = BitConverter.ToUInt32(prop.Value.Data, 0);
+                    this.ReverseRowIndex.Add(temp, BitConverter.ToUInt16(prop.Key, 0));
+                }
             }
+
             this.RowMatrix = new TCRowMatrix(this, this.RowIndexBTH);
         }
 
@@ -46,11 +59,13 @@ namespace PSTParse.LTP
 
             this.RowIndexBTH = new BTH(this.HeapNode, this.TCHeader.RowIndexLocation);
             this.ReverseRowIndex = new Dictionary<uint, uint>();
+
             foreach (var prop in this.RowIndexBTH.Properties)
             {
                 var temp = BitConverter.ToUInt32(prop.Value.Data, 0);
                 this.ReverseRowIndex.Add(temp, BitConverter.ToUInt32(prop.Key, 0));
             }
+
             this.RowMatrix = new TCRowMatrix(this, this.RowIndexBTH);
         }
     }
