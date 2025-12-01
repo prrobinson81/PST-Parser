@@ -1,4 +1,12 @@
-﻿using System;
+﻿//------------------------------------------------------------------------
+// <remarks>
+// Forked from PSTParse project available at: <see href="https://github.com/dancash/PST-Parser.git"/>.
+// </remarks>
+//------------------------------------------------------------------------
+
+#pragma warning disable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,3 +28,5 @@ using System.Text;
         }
     }
 }*/
+
+#pragma warning restore

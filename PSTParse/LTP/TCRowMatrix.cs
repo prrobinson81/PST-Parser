@@ -1,19 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using PSTParse.NDB;
+﻿//------------------------------------------------------------------------
+// <remarks>
+// Forked from PSTParse project available at: <see href="https://github.com/dancash/PST-Parser.git"/>.
+// </remarks>
+//------------------------------------------------------------------------
 
 namespace PSTParse.LTP
 {
+    using System;
+    using System.Collections.Generic;
+
+    using PSTParse.NDB;
+
+    /// <summary>
+    /// Implements the TC Row Matrix structure used in the PST file format to manage table row data.
+    /// </summary>
+    /// <remarks>
+    /// See <see href="https://learn.microsoft.com/en-us/openspecs/office_file_formats/ms-pst/7f5ec68f-d4fd-404f-95c3-fe3495a034ec"/> for more information.
+    /// </remarks>
     public class TCRowMatrix
     {
-        public TableContext TableContext;
-        public List<BlockDataDTO> TCRMData;
-
-        public List<TCRowMatrixData> Rows;
-        public Dictionary<uint, TCRowMatrixData> RowXREF;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TCRowMatrix"/> class, representing a matrix of rows within a table context, and populates the row data and cross-references based on the provided table context and heap.
+        /// </summary>
+        /// <remarks>
+        /// This constructor initializes the row matrix by reading the row matrix location from the table context and processing the row index properties to populate the <see cref="Rows"/> and <see cref="RowXREF"/> collections.
+        /// The row data is retrieved from the heap node or sub-nodes based on the row matrix location identifier.
+        /// The constructor handles both Unicode and ANSI PST formats, adjusting for differences in row index size and block trailer size.
+        /// It calculates the appropriate block and index within the block for each row, and constructs <see cref="TCRowMatrixData"/> instances accordingly.
+        /// </remarks>
+        /// <param name="tableContext">The context of the table, which provides metadata and access to the row matrix location, row index properties, and heap data.</param>
+        /// <param name="heap">The heap structure used to retrieve additional data required for constructing row matrix entries.</param>
         public TCRowMatrix(TableContext tableContext, BTH heap)
         {
             this.Rows = new List<TCRowMatrixData>();
@@ -94,5 +110,31 @@ namespace PSTParse.LTP
                 this.Rows.Add(curRow);
             }
         }
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the context for interacting with the table data.
+        /// </summary>
+        public TableContext TableContext { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of TCRM block data.
+        /// </summary>
+        public List<BlockDataDTO> TCRMData { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of rows in the matrix.
+        /// </summary>
+        public List<TCRowMatrixData> Rows { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mapping between row identifiers and their associated matrix data.
+        /// </summary>
+        /// <remarks>This property provides access to the cross-reference data for rows in the matrix. 
+        /// Modifying the dictionary directly will affect the underlying data structure.</remarks>
+        public Dictionary<uint, TCRowMatrixData> RowXREF { get; set; }
+
+        #endregion
     }
 }
