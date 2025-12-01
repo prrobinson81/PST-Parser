@@ -1,7 +1,4 @@
 ﻿//------------------------------------------------------------------------
-// <copyright file="PSTFile.cs" company="CNH N.V.">
-// Copyright (c) CNH N.V.. All rights reserved.
-// </copyright>
 // <remarks>
 // Forked from PSTParse project available at: <see href="https://github.com/dancash/PST-Parser.git"/>.
 // </remarks>
@@ -43,32 +40,17 @@ namespace PSTParse
         /// <param name="path">The file path to the PST file to be opened. The file must exist and be accessible.</param>
         public PSTFile(string path)
         {
-            //// Console.WriteLine("Opening PST File: " + path);
-
             this.Path = path;
             this.PSTMMF = MemoryMappedFile.CreateFromFile(path, FileMode.Open);
-
-            //// Console.WriteLine("Reading PST Header...");
             this.Header = new PSTHeader(this);
-
-            //// Console.WriteLine("Initializing Mail Store...");
-            /*var messageStoreData = BlockBO.GetNodeData(SpecialNIDs.NID_MESSAGE_STORE);
-            var temp = BlockBO.GetNodeData(SpecialNIDs.NID_ROOT_FOLDER);*/
             this.MailStore = new MailStore(this);
-
-            //// Console.WriteLine("Loading Top of PST Folder...");
             this.TopOfPST = new MailFolder(this.MailStore.RootFolder.NID, new List<string>(), this);
             this.NamedPropertyLookup = new NamedToPropertyLookup(this);
-            //// var temp = new TableContext(rootEntryID.nid);
-            //// PasswordReset.ResetPassword();
-
-            //// Console.WriteLine("PST File Loaded Successfully.");
         }
 
         #endregion
 
         #region Properties
-        //// public static PSTFile CurPST { get; set; }
 
         /// <summary>
         /// Gets or sets the file path of the PST file.
@@ -157,7 +139,7 @@ namespace PSTParse
         /// </summary>
         /// <remarks>
         /// Accesses the NID_MESSAGE_STORE Property Context and loops through the DataEntries.
-        /// Checks each DataEntry.Key for the Password Hash property identifier (0xFF, 0x67).
+        /// Checks each DataEntry.key for the Password Hash property identifier (0xFF, 0x67).
         /// If the identifier is found and the following 4 bytes are non-zero, the PST is password protected, otherwise it is not.
         /// </remarks>
         /// <returns><see cref="bool"/>.</returns>
