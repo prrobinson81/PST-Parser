@@ -1,20 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//------------------------------------------------------------------------
+// <remarks>
+// Forked from PSTParse project available at: <see href="https://github.com/dancash/PST-Parser.git"/>.
+// </remarks>
+//------------------------------------------------------------------------
 
 namespace PSTParse.NDB
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     /*
     public static class BlockFactory
     {
-        public static IBLOCK GetBlock(byte[] bytes, int blockDataSize, 
+        public static IBLOCK GetBlock(byte[] bytes, int blockDataSize,
             bool isInternal, bool isSubNode)
         {
             var trailerOffset = bytes.Length - 16;
             var trailer = new BlockTrailer(bytes, trailerOffset);
-
-            
 
             if (!isInternal)
                 return new DataBlock(bytes, blockDataSize);

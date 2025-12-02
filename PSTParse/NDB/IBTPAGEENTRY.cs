@@ -4,13 +4,15 @@
 // </remarks>
 //------------------------------------------------------------------------
 
-/*
 namespace PSTParse.NDB
 {
-    public class SubNodeDataDTO
+    /// <summary>
+    /// Defines a IBTPAGEENTRY interface.
+    /// </summary>
+    /// <remarks>
+    /// Left empty for implementation in Unicode and ANSI PST files.
+    /// </remarks>
+    public interface IBTPAGEENTRY
     {
-        public List<BlockDataDTO> Data;
-        //public ulong PstOffset;
-        public Dictionary<ulong, SubNodeDataDTO> SubNodeData;
     }
-}*/
+}

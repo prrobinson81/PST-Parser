@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.MemoryMappedFiles;
-using System.Linq;
-using System.Text;
+﻿//------------------------------------------------------------------------
+// <remarks>
+// Forked from PSTParse project available at: <see href="https://github.com/dancash/PST-Parser.git"/>.
+// </remarks>
+//------------------------------------------------------------------------
 
 namespace PSTParse.PSTBTree
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO.MemoryMappedFiles;
+    using System.Linq;
+    using System.Text;
+
     /*
     public class PSTBTreeNode
     {
-        
+
 
         public bool Internal { get; set; }
         public long Offset { get; set; }
@@ -18,7 +24,7 @@ namespace PSTParse.PSTBTree
 
         public List<PSTBTreeNode> Children { get; set; }
 
-        
+
 
         public PSTBTreeNode(BREF root, MemoryMappedFile pstmmf, bool isNode)
         {
