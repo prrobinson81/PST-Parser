@@ -2,7 +2,6 @@
 // <remarks>
 // Forked from PSTParse project available at: <see href="https://github.com/dancash/PST-Parser.git"/>.
 // </remarks>
-// <author>Peter Robinson (CNH2\nt084)</author>
 //------------------------------------------------------------------------
 
 namespace PSTParse

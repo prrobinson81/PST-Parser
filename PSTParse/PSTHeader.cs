@@ -124,7 +124,10 @@ namespace PSTParse
         /// <summary>
         /// Gets a value indicating whether the PST file uses Unicode encoding.
         /// </summary>
-        public bool? IsUNICODE { get { return IsANSI == null ? null : !IsANSI; } }
+        public bool? IsUNICODE
+        {
+            get { return this.IsANSI == null ? null : !this.IsANSI; }
+        }
 
         /// <summary>
         /// Gets or sets the B-tree node used for managing indexed data.

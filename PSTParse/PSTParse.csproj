@@ -92,7 +92,7 @@
     <Compile Include="NDB\BREF.cs" />
     <Compile Include="NDB\BTENTRY.cs" />
     <Compile Include="NDB\BTPage.cs" />
-    <Compile Include="NDB\BTPAGEENTRY.cs" />
+    <Compile Include="NDB\IBTPAGEENTRY.cs" />
     <Compile Include="NDB\DatatEncoder.cs" />
     <Compile Include="NDB\IBLOCK.cs" />
     <Compile Include="NDB\NBTENTRY.cs" />

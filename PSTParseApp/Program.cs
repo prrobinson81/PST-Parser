@@ -81,7 +81,7 @@ namespace PSTParseApp
                 //            {
                 //                var message = ipmItem as Message;
                 //                Console.WriteLine(message.Subject);
-                //                Console.WriteLine(message.Imporance);
+                //                Console.WriteLine(message.Importance);
                 //                Console.WriteLine("Sender Name: " + message.SenderName);
                 //                if (message.From.Count > 0)
                 //                    Console.WriteLine("From: {0}",
