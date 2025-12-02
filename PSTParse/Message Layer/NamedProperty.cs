@@ -6,7 +6,6 @@
 
 namespace PSTParse.Message_Layer
 {
-
     /// <summary>
     /// Unimplemented: Represents a named property within a PST (Personal Storage Table) file.
     /// </summary>
