@@ -26,7 +26,7 @@ namespace PSTParse.LTP
         /// The constructor parses the provided byte array to populate the properties of the <see cref="TCINFOHEADER"/> instance.
         /// The byte array is expected to follow a specific structure:
         /// <list type="bullet">
-        /// <item><description>Byte 0: Type</description></item>
+        /// <item><description>Byte 0: BlockType</description></item>
         /// <item><description>Byte 1: Column count</description></item>
         /// <item><description>Bytes 2-3: End offset 48</description></item>
         /// <item><description>Bytes 4-5: End offset 2</description></item>

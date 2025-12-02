@@ -81,11 +81,11 @@ namespace PSTParse.LTP
         /// Gets or sets a lookup table for mapping property type identifiers to their corresponding <see cref="ExchangeProperty"/> definitions.
         /// </summary>
         /// <remarks>
-        /// This dictionary is used to retrieve metadata about Exchange properties based on their type identifier (Type ID).
-        /// Each entry in the dictionary maps a 16-bit unsigned integer (Type ID) to an <see cref="ExchangeProperty"/> object, which contains details such as the byte count,
+        /// This dictionary is used to retrieve metadata about Exchange properties based on their type identifier (BlockType ID).
+        /// Each entry in the dictionary maps a 16-bit unsigned integer (BlockType ID) to an <see cref="ExchangeProperty"/> object, which contains details such as the byte count,
         /// whether the property supports multiple values, and whether it has a variable size.
         /// The dictionary is pre-populated with a set of commonly used Exchange property definitions.
-        /// Callers can use this lookup  to determine the characteristics of a property based on its Type ID.
+        /// Callers can use this lookup  to determine the characteristics of a property based on its BlockType ID.
         /// </remarks>
         public static Dictionary<ushort, ExchangeProperty> PropertyLookupByTypeID { get; set; } = new Dictionary<ushort, ExchangeProperty>
         {
@@ -119,7 +119,7 @@ namespace PSTParse.LTP
             { 0x1048, new ExchangeProperty { ByteCount = 8, Type = 0x1048, MultiValue = true, Variable = false } },
             { 0x1102, new ExchangeProperty { ByteCount = 0, Type = 0x1102, MultiValue = true, Variable = true } },
             { 0x67FF, new ExchangeProperty { ByteCount = 0, Type = 0x67FF, MultiValue = true, Variable = true } },
-            //// { 0x1102, new ExchangeProperty { ByteCount = 0, Type = 0x1102, MultiValue = true, Variable = true } }
+            //// { 0x1102, new ExchangeProperty { ByteCount = 0, BlockType = 0x1102, MultiValue = true, Variable = true } }
         };
 
         /// <summary>
@@ -199,12 +199,14 @@ namespace PSTParse.LTP
                 if (curID == 0)
                 {
                 }
-                else if ((curID & 0x1F) == 0) // must be HID
+                else if ((curID & 0x1F) == 0)
                 {
+                    // must be HID
                     this.Data = heap.GetHIDBytes(new HID(this.key)).Data;
                 }
-                else // let's assume NID
+                else
                 {
+                    // let's assume NID
                     var totalSize = 0;
                     List<BlockDataDTO> dataBlocks; // = new List<BlockDataDTO>();
                     if (heap.HeapNode.HeapSubNode.ContainsKey(curID))

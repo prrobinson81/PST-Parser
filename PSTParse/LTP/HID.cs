@@ -43,7 +43,7 @@ namespace PSTParse.LTP
         /// Gets or sets the HID (Human Interface Device) type identifier.
         /// </summary>
         /// <remarks>
-        /// HID Type; MUST be set to 0 (NID_TYPE_HID) to indicate a valid HID.
+        /// HID BlockType; MUST be set to 0 (NID_TYPE_HID) to indicate a valid HID.
         /// </remarks>
         public ulong Type { get; set; }
 

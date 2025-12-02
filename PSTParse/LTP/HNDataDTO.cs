@@ -13,7 +13,7 @@ namespace PSTParse.LTP
     /// </summary>
     /// <remarks>
     /// This class is typically used to encapsulate data related to hierarchical block structures, such as in file systems or data processing pipelines.
-    /// The <see cref="Parent"/> property  references the parent block, while <see cref="BlockOffset"/> specifies the offset of the current block relative to its parent
+    /// The <see cref="Parent"/> property  references the parent block, while <see cref="BlockOffset"/> specifies the offset of the current block relative to its parent.
     /// </remarks>
     public class HNDataDTO
     {

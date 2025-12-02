@@ -42,8 +42,9 @@ namespace PSTParse.LTP
                 return;
             }
 
-            if ((rowMatrixHNID & 0x1F) == 0) // HID
+            if ((rowMatrixHNID & 0x1F) == 0)
             {
+                // HID
                 this.TCRMData = new List<BlockDataDTO>
                 {
                     new BlockDataDTO
@@ -131,8 +132,10 @@ namespace PSTParse.LTP
         /// <summary>
         /// Gets or sets the mapping between row identifiers and their associated matrix data.
         /// </summary>
-        /// <remarks>This property provides access to the cross-reference data for rows in the matrix. 
-        /// Modifying the dictionary directly will affect the underlying data structure.</remarks>
+        /// <remarks>
+        /// This property provides access to the cross-reference data for rows in the matrix.
+        /// Modifying the dictionary directly will affect the underlying data structure.
+        /// </remarks>
         public Dictionary<uint, TCRowMatrixData> RowXREF { get; set; }
 
         #endregion

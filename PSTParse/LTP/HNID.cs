@@ -36,7 +36,7 @@ namespace PSTParse.LTP
         #region Properties
 
         /// <summary>
-        ///  Gets or sets the HID Type; MUST be set to 0 (NID_TYPE_HID) to indicate a valid HID.
+        ///  Gets or sets the HID BlockType; MUST be set to 0 (NID_TYPE_HID) to indicate a valid HID.
         /// </summary>
         public ulong HNID_Type { get; set; }
 

@@ -57,11 +57,13 @@ namespace PSTParse.LTP
             }
             else if (blockIndex % 128 == 8)
             {
-                this.BitMapPageHeader = new HNBITMAPHDR(ref this.bytes.Data);
+                var data = this.bytes.Data;
+                this.BitMapPageHeader = new HNBITMAPHDR(ref data);
             }
             else
             {
-                this.PageHeader = new HNPAGEHDR(ref this.bytes.Data);
+                var data = this.bytes.Data;
+                this.PageHeader = new HNPAGEHDR(ref data);
             }
         }
 
