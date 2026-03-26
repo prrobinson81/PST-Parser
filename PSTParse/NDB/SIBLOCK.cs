@@ -36,25 +36,29 @@ namespace PSTParse.NDB
         {
             this.DataBlock = dataBlock;
 
-            var type = dataBlock.Data[0];
-            var cLevel = dataBlock.Data[1];
+            var type = dataBlock.Data[0]; // Block type (1 byte); MUST be set to 0x02.
+            var cLevel = dataBlock.Data[1]; // Compression level (1 byte); MUST be set to 0x01.
+            var cEnt = BitConverter.ToUInt16(dataBlock.Data, 2); // Entry count (2 bytes): The number of SIENTRYs in the SIBLOCK.
+            var dwPadding = BitConverter.ToUInt32(dataBlock.Data, 4); // Padding (4 bytes): MUST be set to 0x0 for Unicode PST files, else it's an ANSI PST file.
+
+            bool isUnicodePST = dwPadding == 0x0; // Determine if this is a Unicode PST or ANSI PST based on the padding value
 
             var entrySize = 16; // Size of each SIENTRY in bytes for Unicode PST files
             var entriesOffset = 8; // Offset where entries start in the data block for Unicode PST files
 
-            // Get bytes 4-7 - if they're 0x0 this is a Unicode PST, else it's an ANSI PST
-            if (BitConverter.ToUInt32(dataBlock.Data, 4) != 0x0)
+            // Get dwPadding (bytes 4-7) - if they're 0x0 this is a Unicode PST, else it's an ANSI PST
+            if (!isUnicodePST)
             {
-                entrySize = 8; // Size of each SIENTRY in bytes for Unicode PST files
-                entriesOffset = 4; // Offset where entries start in the data block for Unicode PST files
+                entrySize = 8; // Size of each SIENTRY in bytes for ANSI PST files
+                entriesOffset = 4; // Offset where entries start in the data block for ANSI PST files
             }
 
-            this.EntryCount = BitConverter.ToUInt16(dataBlock.Data, 2);
+            this.EntryCount = cEnt;
             this.Entries = new List<SIENTRY>();
 
             for (int i = 0; i < this.EntryCount; i++)
             {
-                this.Entries.Add(new SIENTRY(dataBlock.Data.RangeSubset(entriesOffset + (entrySize * i), 16)));
+                this.Entries.Add(new SIENTRY(dataBlock.Data.RangeSubset(entriesOffset + (entrySize * i), entrySize)));
             }
         }
 
